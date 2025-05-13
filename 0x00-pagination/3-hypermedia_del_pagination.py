@@ -26,9 +26,7 @@ class Server:
         return self.__dataset
 
     def indexed_dataset(self) -> Dict[int, List]:
-        """
-        Dataset indexed by position starting at 0
-        """
+        """Dataset indexed by position starting at 0"""
         if self.__indexed_dataset is None:
             dataset = self.dataset()
             self.__indexed_dataset = {
@@ -52,8 +50,8 @@ class Server:
             dict: with keys 'index', 'next_index', 'page_size', and 'data'
         """
         indexed_data = self.indexed_dataset()
-        assert isinstance(index, int)
-        assert 0 <= index < len(self.dataset())
+        assert isinstance(index, int) and 0 <= index < len(self.dataset()), \
+            "index must be a valid non-negative integer within range"
 
         data = []
         current_index = index
