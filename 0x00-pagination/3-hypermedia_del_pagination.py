@@ -34,13 +34,9 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(
-        self,
-        index: int = None,
-        page_size: int = 10
-    ) -> Dict[str, Any]:
+    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
-        Get a deletion-resilient page of the dataset starting from a given index.
+        Get a deletion-resilient page of the dataset from starting index.
 
         Args:
             index (int): starting index
