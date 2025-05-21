@@ -1,20 +1,16 @@
-#!/usr/bin/env python3
-"""Basic Flask app with a single route
+#!/usr/bin/python3
+"""
+Basic Flask app with a single route
 """
 
 from flask import Flask, render_template
 
-
 app = Flask(__name__)
-app.url_map.strict_slashes = False
 
 
-@app.route('/')
-def get_index() -> str:
-    """The home/index page.
+@app.route('/', methods=['GET'], strict_slashes=False)
+def index():
+    """
+    Route for the index page
     """
     return render_template('0-index.html')
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
