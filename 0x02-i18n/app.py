@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-
-"""
-Basic Flask app
+"""Flask app with locale and timezone selection
 """
 
 from flask import Flask, render_template, request, g
@@ -14,8 +12,7 @@ babel = Babel(app)
 
 
 class Config:
-    """
-    Config class.
+    """Babel config with supported languages and defaults
     """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
@@ -33,8 +30,7 @@ users = {
 
 
 def get_user(login_as):
-    """
-    get_user.
+    """Retrieve user from mock DB using ?login_as= ID
     """
     try:
         return users.get(int(login_as))
@@ -52,8 +48,7 @@ def before_request():
 
 @babel.localeselector
 def get_locale():
-    """
-    get_locale.
+    """Select locale from URL > user > header > default
     """
     locale = request.args.get("locale")
     if locale:
@@ -71,8 +66,7 @@ def get_locale():
 
 @babel.timezoneselector
 def get_timezone():
-    """
-    get_timezone.
+    """Select timezone from URL > user > default (UTC)
     """
     try:
         timezone = request.args.get("timezone")
@@ -93,8 +87,7 @@ def get_timezone():
 
 @app.route('/', methods=["GET"], strict_slashes=False)
 def hello():
-    """
-    hello.
+    """Render main page
     """
     return render_template('index.html')
 
